@@ -1,0 +1,18 @@
+package ls.test.main;
+
+public class Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+
+	}
+	
+	private void testBase64()
+	{
+		String info = "name:ls, password:123456";
+		TestBASE64
+	}
+
+}

@@ -1,5 +1,13 @@
 package com.likefood.cookcook;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
@@ -7,6 +15,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class MainActivity extends Activity implements OnClickListener{
 
@@ -19,6 +28,54 @@ public class MainActivity extends Activity implements OnClickListener{
         ((Button)findViewById(R.id.guestBtn)).setOnClickListener(this);
     }
     
+    @Override
+    protected void onStart()
+    {
+    	super.onStart();
+    	Runnable networkTest = new Runnable()
+    	{
+    		@Override
+    		public void run()
+    		{
+    			sendGetMenuRequest();
+    		}
+    	};
+    	new Thread(networkTest).start();
+    }
+    
+    private void sendGetMenuRequest()
+    {
+    	System.out.println("========ready to send getmenu request");
+    	String url = "http://192.168.31.14:8080//cookserver/servlet/GetMenuItems";
+    	TextView tv = (TextView) findViewById(R.id.outputText);
+    	tv.setText("this is not inited");
+    	try {
+			URL realUrl = new URL(url);
+			try {
+				HttpURLConnection connection = (HttpURLConnection)realUrl.openConnection();
+				connection.connect();
+				System.out.println("responseCode:" + connection.getResponseCode());
+				BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+				String line;
+				StringBuilder sb = new StringBuilder();
+				while((line = br.readLine())!= null)
+				{
+					sb.append(line);
+				}
+				br.close();
+				connection.disconnect();
+				tv.setText( connection.getResponseCode() + sb.toString());
+
+			} catch (IOException e) {
+				System.out.println("========exception ocurrs1");
+				e.printStackTrace();
+			}
+			
+		} catch (MalformedURLException e) {
+			System.out.println("========exception occurrs2");
+			e.printStackTrace();
+		}
+    }
  
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

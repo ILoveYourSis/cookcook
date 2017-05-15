@@ -1,0 +1,31 @@
+package ls.test.main;
+
+import java.nio.charset.Charset;
+
+public class Test {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+        testBase64();
+	}
+	
+	private void testBase64()
+	{
+		String info = "name:ls, password:123456";
+		try {
+			String encrypted = TestBASE64.encryptBASE64(info.getBytes());
+			System.out.println("encrypted:" + encrypted);
+			
+			byte[] decrypted = TestBASE64.decryptBASE64(encrypted);
+			System.out.println("decrypted:" + decrypted.toString());
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}

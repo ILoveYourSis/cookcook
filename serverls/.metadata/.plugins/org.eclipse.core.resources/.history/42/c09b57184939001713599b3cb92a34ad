@@ -1,0 +1,11 @@
+package ls.test.main;
+
+public class TestMain {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		TestBASE64.testCode();
+	}
+}

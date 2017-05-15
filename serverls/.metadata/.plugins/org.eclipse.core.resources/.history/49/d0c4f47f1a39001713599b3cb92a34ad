@@ -1,0 +1,19 @@
+package httpsmock;
+
+import java.security.KeyStore;
+import java.security.PrivateKey;
+import java.security.cert.CertificateFactory;
+
+public class CertifcateUtils {
+    public static byte[] readCertificates() throws Exception
+    {
+    	CertificateFactory factory = CertificateFactory.getInstance("X.509");
+    	
+    	
+    	
+    }
+	
+	
+	
+	
+}

@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Driver;
-
 public class GetMenuItems extends HttpServlet {
 	
 	private boolean _initSql = false;

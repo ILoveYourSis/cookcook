@@ -1,0 +1,11 @@
+import com.mysql.jdbc.util.Base64Decoder;
+import sun.misc.*;
+
+public class TestBASE64 {
+	
+	public static byte[] decryptBASE64(String key) throws Exception
+	{
+	    return (new BASE64
+	}
+
+}

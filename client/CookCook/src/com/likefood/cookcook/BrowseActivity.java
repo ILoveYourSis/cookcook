@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 
 import android.R.string;
 import android.app.Activity;
@@ -38,7 +41,42 @@ public class BrowseActivity extends Activity implements OnClickListener{
     	((Button)findViewById(R.id.searchBtn)).setOnClickListener(this);
     	if(_searchTxt == null) _searchTxt = (EditText) findViewById(R.id.searchTxt);
     	_searchTxt.setText(readLastSearch());
+    	
+    	sendGetMenuRequest();
+    	
     }
+    
+    private void sendGetMenuRequest()
+    {
+    	System.out.println("========ready to send getmenu request");
+    	String url = "http://192.168.31.14:8080//cookserver/servlet/GetMenuItems";
+    	try {
+			URL realUrl = new URL(url);
+			System.out.println("========set url " + url);
+			try {
+				URLConnection connection = realUrl.openConnection();
+				connection.setRequestProperty("accept", "*/*");
+				connection.setRequestProperty("connection",  "Keep-Alive");
+				connection.connect();
+				
+				String o = connection.getContent().toString();
+				System.out.println("========out from server:" + o);
+			} catch (IOException e) {
+				System.out.println("========exception ocurrs1");
+				e.printStackTrace();
+			}
+			
+		} catch (MalformedURLException e) {
+			System.out.println("========exception occurrs2");
+			e.printStackTrace();
+		}
+    }
+    
+    private void getMenu()
+    {
+    	
+    }
+    
 
 	@Override
 	public void onClick(View view)

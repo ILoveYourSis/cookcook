@@ -1,0 +1,33 @@
+package ls.test.main;
+import sun.misc.*;;
+
+public class TestBASE64 {
+	
+	public static byte[] decryptBASE64(String key) throws Exception
+	{
+	    return (new BASE64Decoder()).decodeBuffer(key);
+	}
+	
+	public static String encryptBASE64(byte[] key) throws Exception
+	{
+		return (new BASE64Encoder()).encodeBuffer(key);
+	}
+
+	
+	public static void testCode()
+	{
+		String info = "name:ls, password:123456";
+		try {
+			String encrypted = TestBASE64.encryptBASE64(info.getBytes());
+			System.out.println("encrypted:" + encrypted);
+			
+			byte[] decrypted = TestBASE64.decryptBASE64(encrypted);
+			System.out.println("decrypted:" + decrypted.toString());
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+}

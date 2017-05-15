@@ -9,4 +9,18 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  
+  
+  <servlet>
+      <servlet-name>GetMenuItems</servlet-name>
+      <servlet-class>com.cookserver.action.GetMenuItems</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+      <servlet-name>GetMenuItems</servlet-name>
+      <url-pattern>/servlet/GetMenuItems</url-pattern>
+  </servlet-mapping>
+  
+  
 </web-app>
