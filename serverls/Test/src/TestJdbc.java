@@ -1,0 +1,64 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+
+
+public class TestJdbc {
+
+	/**
+	 * @param args
+	 * @throws  
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		   String url = "jdbc:mysql://localhost:3306/cookmenu?"
+	                + "user=ls&password=123456&Unicode=true&characterEncoding=UTF8";
+		 //建立连接
+		   Connection con = null;
+		try {
+			con = DriverManager.getConnection(url);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		   //建立陈述表达式
+		   Statement stmt = null;
+		try {
+			stmt = con.createStatement();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		   //查询语句
+		   String query = "select * from test";
+
+		   //rs就是得到的结果集，你可以进行处理
+		   ResultSet rs = null;
+		try {
+			rs = stmt.executeQuery(query);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		   //比如
+		   
+		   try {
+			while(rs.next())
+			   {
+				   	int id = rs.getInt(1);
+				   	String name = rs.getString(2);
+				   	System.out.println("id:" + id + " name:" + name);
+			   }
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
+	}
+
+}

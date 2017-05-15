@@ -1,0 +1,6 @@
+INDEX VERSION 1.122+C:\Users\sakul\Documents\cookcook\serverls\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1443799946.index
+3422343508.index
+293740566.index
+4101255269.index
+2480760443.index

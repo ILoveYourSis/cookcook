@@ -27,9 +27,5 @@ public class MenuItem extends Button
     	{
     		super.setBackgroundColor(getSolidColor());
     	}
-    	
-    	
-    	
     }
-    
 }

@@ -1,0 +1,12 @@
+package com.cookserver.action;
+
+import javax.servlet.http.HttpServlet;
+
+public class GetMenuItems extends HttpServlet {
+	
+	
+	
+	
+	
+
+}

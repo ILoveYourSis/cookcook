@@ -1,0 +1,39 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
+
+
+
+public class TestJdbc {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		   String url = "jdbc:mysql://localhost:3306/test?"
+	                + "user=ls&password=123456&Unicode=true&characterEncoding=UTF8";
+		 //建立连接
+		   Connection con = DriverManager.getConnection(url);
+		   //建立陈述表达式
+		   Statement stmt = con.createStatement();
+
+		   //查询语句
+		   String query = "select * from test";
+
+		   //rs就是得到的结果集，你可以进行处理
+		   ResultSet rs= stmt.executeQuery(query);
+
+		   //比如
+		   
+		   while(rs.next())
+		   {
+			   	int id = rs.getInt(1);
+			   	String name = rs.getString(2);
+			   	System.out.println("id:" + id + " name:" + name);
+		   }
+	
+	}
+
+}

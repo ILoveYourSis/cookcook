@@ -1,0 +1,138 @@
+package com.likefood.cookcook;
+
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+
+import android.R.string;
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.widget.SlidingPaneLayout.LayoutParams;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
+import android.widget.TextView;
+
+public class BrowseActivity extends Activity implements OnClickListener{
+	private EditText _searchTxt = null;
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.browse_activity);
+		((Button)findViewById(R.id.searchBtn)).setOnClickListener(this);
+		if(_searchTxt == null) _searchTxt = (EditText) findViewById(R.id.searchTxt);
+		_searchTxt.setText(readLastSearch());
+	}
+
+	@Override
+	public void onClick(View view)
+	{
+		if(view.getId() == R.id.searchBtn) onSearchClicked();
+		else onItemClicked(view);
+	}
+	
+	private void onSearchClicked()
+	{
+		String txt = _searchTxt.getText().toString();
+		writeLastSearch(txt);
+		if(txt == "") return;
+		System.out.println("search" + txt);
+		
+		LinearLayout container = (LinearLayout) findViewById(R.id.container);
+		
+        container.removeAllViews();
+		
+		for(int i = 0; i < 20; ++i)
+	    {
+			MenuItem item = new MenuItem(this);
+			item.setText("item" + i);
+			item.setCookId("id");
+			item.setOnClickListener(this);
+			container.addView(item);
+		}
+	}
+	
+	
+	//用来详细显示做菜的过程，放在被点击的item之下.
+	//如果用户再点击另一个item，那么删除当前textview，重新在被点击的item下面再生成textview
+	private TextView _expandedView = null;
+	public void onItemClicked(View view)
+	{
+		LinearLayout container = (LinearLayout) findViewById(R.id.container);
+		if(_expandedView != null)
+			container.removeView(_expandedView);
+
+		//regenerate
+		MenuItem item = (MenuItem)view;
+		_expandedView = new TextView(this);
+	    
+		int clickedIdx = 0;
+		int childrenCount = container.getChildCount();
+		for(int i = 0; i < childrenCount; ++i)
+		{
+			if(container.getChildAt(i) == view)
+			{
+				clickedIdx = i; 
+				break;
+			}
+		}
+		
+		container.addView(_expandedView, clickedIdx);
+	    System.out.println(item.getCookId());	
+	}
+	
+	private String readLastSearch()
+	{
+		String path = getExternalCacheDir() + "/lastSearch";
+		File file = new File(path);
+		if(file.exists())
+		{
+			try {
+			    BufferedReader br = new BufferedReader(new FileReader(file));
+				try {
+					String o = br.readLine();
+					br.close();
+					return o;
+				} catch (IOException e) {
+					e.printStackTrace();
+					return "";
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+				return "";
+			}
+		}
+		else return "";
+	}
+	
+	private void writeLastSearch(String txt)
+	{
+		String path = getExternalCacheDir() + "/lastSearch";
+		File file = new File(path);
+        try {
+			FileOutputStream os = new FileOutputStream(file);
+			byte[] bts = txt.getBytes();
+			try {
+				os.write(bts, 0, bts.length);
+				os.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+        
+	}
+	
+	
+}

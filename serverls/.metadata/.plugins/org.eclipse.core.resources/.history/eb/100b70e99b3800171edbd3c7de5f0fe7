@@ -1,0 +1,13 @@
+
+public class TestJdbc {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		   String url = "jdbc:mysql://localhost:3306/javademo?"
+	                + "user=root&password=root&useUnicode=true&characterEncoding=UTF8";
+	}
+
+}
