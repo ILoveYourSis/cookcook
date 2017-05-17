@@ -1,0 +1,21 @@
+package CookTable;
+
+public class TableBase 
+{
+	public void readFromDb()
+	{
+		
+	}
+	
+	public void saveAll()
+	{
+		
+	}
+	
+	public void updateRecord(RecordBase record)
+	{
+		
+	}
+	
+
+}

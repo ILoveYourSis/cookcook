@@ -1,0 +1,7 @@
+package CookTable;
+
+import Util.RecordBase;
+
+public class MenuRecord  extends RecordBase{
+
+}

@@ -1,0 +1,84 @@
+package Util;
+
+import java.lang.reflect.Type;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Dictionary;
+import java.util.Hashtable;
+import java.util.Properties;
+
+
+import com.mysql.jdbc.Driver;
+
+public class DataMgr 
+{
+	private final String URL 	  = "jdbc:mysql://127.0.0.1:3306/ssh";
+	private final String USR_NAME = "ls";
+	private final String USR_PSWD = "123456";
+	
+	private static DataMgr _instance = null;
+	public static DataMgr getInstance()
+	{
+		if(_instance == null) _instance = new DataMgr();
+		return _instance;
+	}
+	
+	private Dictionary<Type, Object> _tables;
+	public void registerTable(Type tableType)
+	{
+		if(_tables == null) _tables = new Hashtable<Type, Object>();
+		
+		Object tableInstance = null;
+		try {
+			tableInstance = tableType.getClass().newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		_tables.put(tableType, tableInstance);
+	}
+	
+	public TableBase getTable(TableBase tableType)
+	{
+		return _tables.get(tableType);
+	}
+	
+	public TableBase getTable(Type tableType)
+	{
+		return null;
+	}
+	
+	@SuppressWarnings("finally")
+	public java.sql.Connection newConnection()
+	{
+		Driver driver = null;
+		try 
+		{
+			driver = new com.mysql.jdbc.Driver();
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		String url = URL;
+		Properties info = new Properties();
+		info.put("user", USR_NAME);
+		info.put("password", USR_PSWD);
+		java.sql.Connection conn = null;
+		try 
+		{
+			conn = driver.connect(url, info);
+		} 
+		catch (SQLException e) 
+		{
+			e.printStackTrace();
+		}
+		finally
+		{
+			return conn;
+		}
+	}
+}

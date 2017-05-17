@@ -1,0 +1,8 @@
+package CookTable;
+
+import Util.TableBase;
+
+public class MenuTable extends TableBase
+{
+    
+}

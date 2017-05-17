@@ -1,1 +1,11 @@
 1494849734500	Copy file
+1494898603540	Rename type 'MenuRecode'
+1494898659275	Move compilation units
+1494899811284	Rename type 'GetMenuItems'
+1494903285379	Move compilation units
+1494909283808	Rename field 'conn'
+1494928585079	Delete element
+1494933661976	Rename type 'BrowseQueryServlet'
+1494933833377	Rename type 'EditRecordServlet'
+1494937708657	Rename resource 'index.html'
+1495025932565	Infer generic type arguments

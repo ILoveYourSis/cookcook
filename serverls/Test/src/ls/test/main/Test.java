@@ -7,7 +7,20 @@ public class Test {
 	 */
 	public static void main(String[] args) {
 //        TestBASE64.testCode();
-        MD5.test();
+		instantiate(MyClass.class);
+	}
+	
+	public static void instantiate(Class c)
+	{
+		try {
+			c.newInstance();
+		} catch (InstantiationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IllegalAccessException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 }

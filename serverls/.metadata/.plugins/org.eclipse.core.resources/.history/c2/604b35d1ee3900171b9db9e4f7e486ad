@@ -1,0 +1,32 @@
+package CookTable;
+
+import java.awt.MenuItem;
+
+import Util.TableBase;
+
+public class MenuTable extends TableBase<MenuRecord>
+{
+    public MenuTable()
+    {
+    	
+    }
+
+	@Override
+	public void readFromDb()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void saveAll()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void updateRecord(MenuItem record)
+	{
+		super.updateRecord(record);
+	}
+}

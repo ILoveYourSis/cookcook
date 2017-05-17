@@ -1,0 +1,6 @@
+package CookTable;
+
+public class MenuTable extends TableBase
+{
+    
+}

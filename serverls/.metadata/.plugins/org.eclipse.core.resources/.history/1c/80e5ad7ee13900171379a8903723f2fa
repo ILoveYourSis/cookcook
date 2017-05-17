@@ -1,0 +1,9 @@
+package Util;
+
+public class Logger
+{
+    public static void log(Object arg)
+    {
+    	System.out.println(arg.toString());
+    }
+}

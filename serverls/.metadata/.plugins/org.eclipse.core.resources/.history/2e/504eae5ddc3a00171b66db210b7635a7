@@ -1,0 +1,44 @@
+package com.cookserver.action;
+
+import java.io.PrintWriter;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+/*
+ * ‰Ø¿¿∫ÕÃÌº”record
+ */
+public class EditRecordsServlet extends HttpServlet
+{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -1873880994027402552L;
+
+	public void doGet(HttpServletRequest req, HttpServletResponse res)
+    {
+    	try
+    	{
+    		HttpSession hs = req.getSession();
+    		String loginResult = (String)hs.getAttribute("login");
+    		if(loginResult == null || !loginResult.equals("OK"))
+    		{
+    			res.sendRedirect("login.html");
+    			return;
+    		}
+    		PrintWriter writer = res.getWriter();
+    		writer.write(req.getParameter("usrname") + "this is EditRecordsPage");
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    }
+    
+    public void doPost(HttpServletRequest rq, HttpServletResponse rp)
+    {
+    	this.doGet(rq, rp);
+    }
+}

@@ -13,7 +13,7 @@ public class TestJdbc {
 	 * @param args
 	 * @throws  
 	 */
-	public void test(String[] args) {
+	public void test() {
 		// TODO Auto-generated method stub
 		   String url = "jdbc:mysql://localhost:3306/cookmenu?"
 	                + "user=ls&password=123456&Unicode=true&characterEncoding=UTF8";

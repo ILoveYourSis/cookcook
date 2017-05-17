@@ -1,0 +1,32 @@
+package CookTable;
+
+
+import java.sql.ResultSet;
+
+import Util.TableBase;
+
+public class MenuTable extends TableBase<MenuRecord>
+{
+	@Override
+	public void readFromDb()
+	{
+		ResultSet rs = executeQuery("select * fom test");
+		while(rs.next())
+		{
+			
+			
+		}
+		
+		
+	}
+
+	@Override
+	public void saveAll()
+	{
+	}
+	
+	public void updateRecord(MenuRecord record)
+	{
+		super.updateRecord(record);
+	}
+}

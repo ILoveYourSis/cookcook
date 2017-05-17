@@ -1,0 +1,11 @@
+package CookTable;
+
+import Util.RecordBase;
+
+public class MenuRecord  extends RecordBase
+{
+	public int id;
+	public String name;
+	public String info;
+
+}

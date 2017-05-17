@@ -1,0 +1,23 @@
+package com.cookserver.action;
+
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+public class LoginServlet extends HttpServlet
+{
+    public void doGet(HttpServletRequest rq, HttpServletResponse rp)
+    {
+    	String u = rq.getParameter("usrname");
+    	String p = rq.getParameter("pswd");
+    	if(u == "LiangSheng" && p == "ILoveLiangSheng")
+    	{
+    		
+    	}
+    }
+    
+    public void doPost(HttpServletRequest rq, HttpServletResponse rp)
+    {
+    	this.doGet(rq, rp);
+    }
+}

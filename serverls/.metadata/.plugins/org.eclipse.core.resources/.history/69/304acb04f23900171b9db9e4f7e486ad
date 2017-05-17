@@ -1,0 +1,40 @@
+package CookTable;
+
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import Util.TableBase;
+
+public class MenuTable extends TableBase<MenuRecord>
+{
+	@Override
+	public void readFromDb()
+	{
+		ResultSet rs = executeQuery("select * fom test");
+		try {
+			while(rs.next())
+			{
+				int id = rs.getInt(1);
+				String name = rs.getString(2);
+				String info = rs.getString(3);
+				_records.add(new MenuRecord(id, name, info, RecordSate.New));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
+
+	@Override
+	public void saveAll()
+	{
+	}
+	
+	public void updateRecord(MenuRecord record)
+	{
+		super.updateRecord(record);
+	}
+}

@@ -1,0 +1,25 @@
+package CookTable;
+
+import Util.TableBase;
+
+public class MenuTable extends TableBase<MenuRecord>
+{
+    public MenuTable()
+    {
+    	
+    }
+
+	@Override
+	public void readFromDb()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void saveAll()
+	{
+		// TODO Auto-generated method stub
+		
+	}
+}
